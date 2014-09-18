@@ -1,0 +1,23 @@
+{
+  "name": "testmap",
+  "version": "0.1",
+  "homepage": "https://github.com/gborelli/testmap",
+  "authors": [
+    "giorgio <giorgio@giorgioborelli.it>"
+  ],
+  "description": "",
+  "license": "GPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "jquery-ui": "~1.10.3",
+    "gmap3": "~6.0.0",
+    "flexslider": "FlexSlider#version/2.2.2"
+  }
+}

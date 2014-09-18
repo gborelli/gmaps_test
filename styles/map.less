@@ -1,0 +1,91 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+h1 {font-size: 200%}
+h2 {font-size: 180%}
+h3 {font-size: 160%}
+h4 {font-size: 140%}
+h5 {font-size: 120%}
+h6 {font-size: 100%}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#map {
+  height: 100%;
+  margin-top: -89px;
+}
+
+
+.marker_overlay {
+  padding: .8em 1em;
+  border: 1px solid grey;
+  border-radius: .3em;
+  opacity: 0;
+  background: #fff;
+  bottom: 50px;
+  position: absolute;
+  z-index: 3;
+  display: none;
+  width: 240px;
+  p {
+    font-size: 110%;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+
+#markers_wrapper {
+  width: 480px;
+  height: 400px;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 160px;
+  left: 60px;
+  background: white;
+}
+
+.marker {
+  .thumbnail {
+    border-bottom: 1px solid #f3f3f3;
+    height: 240px;
+    cursor: move;
+  }
+  .description {
+    font-style: italic;
+    color: grey;
+  }
+  .overview {
+    border-top: 1px solid grey;
+    padding: 1em;
+  }
+  .lead {
+    h2 {
+      margin: 0;
+      padding-bottom: .3em;
+    }
+  }
+  .details {
+    padding : 1em 0;
+  }
+}
