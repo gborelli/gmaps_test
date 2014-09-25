@@ -1,48 +1,91 @@
 <div id="map"></div>
 
-<div id="markers_wrapper">
-  <div id="markers">
+<div id="markers_wrapper" class="flexlider carousel">
+  <div id="markers" class="slides">
 
     @@include(
         'marker.html',
         {
-            "marker_id": "beautiful-stairs",
-            "title": "Beautiful Stairs",
-            "description": "This Is A Post Description",
-            "overview": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
-            "thumb": "http://cdn.elegantthemes.com/preview/Explorable/wp-content/uploads/2013/03/L1-480x240.jpg",
-             "latitude": 37.80002992748194,
-            "longitude":-122.43711189453137
+            "slide_num": 0,
+            "title": "Torino #0",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
+            "thumb": "http://lorempixel.com/480/240/abstract/",
+            "latitude": 45.07049,
+            "longitude": 7.68682
+        }
+    )
+    @@include(
+        'marker.html',
+        {
+            "slide_num": 1,
+            "title": "Roma #1",
+            "description": "Pretium in tellus. Morbi id dui eu felis vulputate interdum eget ac quam.",
+            "thumb": "http://lorempixel.com/480/240/food/",
+            "latitude": 41.8723889,
+            "longitude": 12.4801802
         }
     )
 
     @@include(
         'marker.html',
         {
-            "marker_id": "monument-valley",
-            "title": "Monument Valley",
-            "description": "Experience The Navajo Culture",
-            "overview": "Pretium in tellus. Morbi id dui eu felis vulputate interdum eget ac quam.",
-            "thumb": "http://cdn.elegantthemes.com/preview/Explorable/wp-content/uploads/2013/03/L8-480x240.jpg",
-            "latitude": 28.764060233517,
-            "longitude": -81.47733406250012
+            "slide_num": 2,
+            "title": "Firenze #2",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+            "thumb": "http://lorempixel.com/480/240/animals/?a=1",
+            "latitude": 43.7710332,
+            "longitude": 11.2480006
         }
     )
 
     @@include(
         'marker.html',
         {
-            "marker_id": "san-francisco-bay",
-            "title": "San Francisco bay",
-            "description": "A beautiful city for a vacation",
-            "overview": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-            "thumb": "http://cdn.elegantthemes.com/preview/Explorable/wp-content/uploads/2013/03/L2-480x240.jpg",
-            "latitude": 35.02663448837741,
-            "longitude":-111.71170906250012
+            "slide_num": 3,
+            "title": "Bologna #3",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
+            "thumb": "http://lorempixel.com/480/240/sports/",
+            "latitude": 44.494887,
+            "longitude":11.3426163
+        }
+    )
+
+    @@include(
+        'marker.html',
+        {
+            "slide_num": 4,
+            "title": "Milano #4",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
+            "thumb": "http://lorempixel.com/480/240/city/?a=1",
+            "latitude": 45.4654219,
+            "longitude":9.1859243
         }
     )
 
 
+    @@include(
+        'marker.html',
+        {
+            "slide_num": 5,
+            "title": "Venezia #5",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
+            "thumb": "http://lorempixel.com/480/240/abstract/?a=1",
+            "latitude": 45.4408474,
+            "longitude": 12.3155151
+        }
+    )
+
+    @@include(
+        'marker.html',
+        {
+            "slide_num": 6,
+            "title": "Napoli #6",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
+            "thumb": "http://lorempixel.com/480/240/animals/",
+            "latitude": 40.8517746,
+            "longitude": 14.2681244
+        }
+    )
 
   </div>
 </div>

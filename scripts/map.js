@@ -8,157 +8,133 @@
 
     var App = window.gmap_app;
 
-    App.Marker = function (map, marker) {
-        var self = this,
-            marker_id = marker.attr('id');
-        self.map = map;
-        self.marker_id = 'marker_' + marker_id;
-        self.overlay_id = 'overlay_' + marker_id;
-        self.lat = marker.data('mapLatitude');
-        self.lng = marker.data('mapLongitude');
-        self.title = $('.marker-title', marker).text();
-
-        self.overlay_content = "<div id='" + self.overlay_id +
-                                 "' class='marker_overlay'><p>" +
-                                 self.title + "</p></div>";
-    };
-
     App.MapWidget = function (trigger, settings) {
         var self = this;
 
 
         self.map = $(trigger);
-        self.is_draggable = true;
-        self.markers_wrapper = $('#markers_wrapper');
-        self.draggable_div = self.markers_wrapper;
+        self.gmap = $(trigger);
+
+        self.markers = {};
+        self.markers_wrapper = $('#markers');
+        self.markers_identifier = '.slide';
         self.active_marker = null;
         self.default_icon = "../images/green_marker.png";
         self.active_icon = '../images/orange_marker.png';
-        self.markers_identifier = '#markers .marker';
+
+        self.center = [44.494887, 11.3426163];
+        self.zoom = 5;
+        self.slides = $(self.markers_identifier, self.markers_wrapper);
         $.extend(true, self, settings);
 
         self.init_map();
         self.init_slider();
-        self.setup_markers();
-
-        if (self.is_draggable && self.draggable_div.length > 0) {
-            self.draggable_div.draggable();
-            self.draggable_div.draggable('option', 'cancel', '.thumbnail');
-            self.draggable_div.draggable('option', 'cancel', '.overview');
-        }
-
     };
 
     App.MapWidget.prototype = {
         init_map: function () {
-            var self = this;
+            var self = this,
+                options = {
+                    center: new google.maps.LatLng(self.center[0], self.center[1]),
+                    zoom: self.zoom,
+                    panControl: true,
+                    zoomControl: true,
+                    zoomControlOptions: {
+                        style: google.maps.ZoomControlStyle.SMALL
+                    },
+                    mapTypeControl: true,
+                    scaleControl: true,
+                    streetViewControl: true,
+                    overviewMapControl: true
+                };
 
-            self.map.gmap3({
-                map: {
-                    options: {
-                        center: [28.764060233517, -81.47733406250012],
-                        zoom: 3,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP,
-                        mapTypeControl: true,
-                        mapTypeControlOptions: {
-                            position : google.maps.ControlPosition.LEFT_CENTER,
-                            style : google.maps.MapTypeControlStyle.DROPDOWN_MENU
-                        },
-                        streetViewControlOptions: {
-                            position: google.maps.ControlPosition.LEFT_CENTER
-                        },
-                        navigationControl: false,
-                        scrollwheel: true,
-                        streetViewControl: true,
-                        zoomControl: false
-                    }
-                }
-            });
+            self.gmap = new google.maps.Map(self.map.get(0), options);
+            self.setup_markers();
         },
 
         init_slider: function () {
             var self = this;
 
-            self.markers_wrapper.flexslider({
-                selector: self.markers_identifier,
-                controlNav: false,
-                before: function (slider) {
-                    // set specific marker active
-                    self.on_slide_change(slider);
-                }
-            });
-        },
-
-        on_slide_change: function (slider) {
-            var self = this,
-                $current_slide = $(slider.slides[slider.currentSlide]),
-                current_slide_id = $current_slide.attr('id');
-
-            google.maps.event.trigger(
-                self.map.gmap3({
-                    get: {id: "marker_" + current_slide_id}
-                }),
-                'click'
-            );
-        },
-        setup_markers: function () {
-            var self = this;
-
-            $(self.markers_identifier).each(function () {
-                self.add_marker(new App.Marker(self.map, $(this)));
-            });
-        },
-
-        add_marker: function (marker_obj) {
-            var self = this,
-                position = [marker_obj.lat, marker_obj.lng],
-                marker_id = marker_obj.marker_id,
-                overlay_id = marker_obj.overlay_id;
-
-            self.map.gmap3({
-                marker: {
-                    id: marker_id,
-                    latLng: position,
-                    options: {
-                        icon: self.default_icon
-                    },
-                    events: {
-                        click: function(marker) {
-                            self.reset_active_marker();
-                            self.set_active_marker(marker);
-                            // change slide
-                        },
-
-                        mouseover: function(marker) {
-                            $('#' + overlay_id).css({
-                                'display': 'block',
-                                'opacity': 0
-                            }).stop(true, true).animate({
-                                bottom: '15px',
-                                opacity: 1
-                            }, 500);
-                        },
-                        mouseout: function (marker) {
-                            $('#' + overlay_id).stop(true, true).animate({
-                                bottom: '50px',
-                                opacity: 0
-                            }, 500, function() {
-                                $(this).css({ 'display' : 'none' });
-                            });
-                        }
-                    }
+            self.slider = self.markers_wrapper.bxSlider({
+                slideSelector: self.slides,
+                slideWidth: 450,
+                minSlides: 1,
+                maxSlides: 3,
+                slideMargin: 10,
+                moveSlides: 1,
+                startSlide: self.slides.length - 1,
+                onSliderLoad: function (idx) {
+                    // set active class to slide and activate marker
+                    var current = $(self.slides[idx]);
+                    self.on_change_slide(current);
                 },
-                overlay: {
-                    latLng: position,
-                    options: {
-                        content: marker_obj.overlay_content,
-                        offset: {
-                            y: -42,
-                            x: -122
-                        }
-                    }
+                onSlideBefore: function (slide) {
+                    // set active class to slide and activate marker
+                    self.on_change_slide(slide);
                 }
             });
+
+            self.markers_wrapper.on('click', '.slide', function () {
+                self.change_slide($(this).data('slideIdx'));
+            });
+        },
+
+        on_change_slide: function (slide) {
+            var self = this,
+                slide_idx = slide.data('slideIdx'),
+                slide_active = $(self.slides.get(slide_idx)).next(),
+                marker = self.markers[slide_active.data('slideIdx')];
+
+            self.reset_active_marker();
+            self.set_active_marker(marker);
+
+            $(self.markers_identifier, self.markers_wrapper).removeClass('active');
+            slide_active.addClass('active');
+        },
+
+        setup_markers: function () {
+            var self = this,
+                markers = $(self.markers_identifier);
+
+            markers.each(function () {
+                self.add_marker($(this));
+            });
+        },
+
+        add_marker: function (obj) {
+            var self = this,
+                slide_id = obj.data('slideIdx'),
+                gmarker;
+
+            gmarker = new google.maps.Marker({
+                position: new google.maps.LatLng(
+                    obj.data('mapLatitude'),
+                    obj.data('mapLongitude')
+                ),
+                map: self.gmap,
+                title: $('.marker-title', obj).text(),
+                icon: self.default_icon
+            });
+
+            gmarker.metadata = {
+                id: slide_id
+            };
+
+            self.markers[slide_id] = gmarker;
+            google.maps.event.addListener(gmarker, 'click', function () {
+                self.change_slide(slide_id);
+            });
+
+        },
+
+        change_slide: function (idx) {
+            // Vado alla slide precedente quella del marker selezionato
+            var self = this;
+            if (idx === 0) {
+                idx = self.slides.length;
+            }
+            // Vado alla slide precedente quella del marker selezionato
+            self.slider.goToSlide(idx - 1);
         },
 
         set_active_marker: function (marker) {
@@ -166,7 +142,7 @@
             self.active_marker = marker;
             marker.setAnimation(google.maps.Animation.BOUNCE);
             marker.setIcon(self.active_icon);
-            self.map.gmap3("get").panTo(marker.position);
+            self.gmap.panTo(marker.position);
         },
 
         reset_active_marker: function () {
@@ -177,6 +153,8 @@
             }
         }
     };
+
+
 
     $(document).ready(function () {
         var map = $('#map'),

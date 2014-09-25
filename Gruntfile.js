@@ -39,8 +39,7 @@ module.exports = function(grunt) {
                         'bower_components/jquery-ui/ui/jquery.ui.widget.js',
                         'bower_components/jquery-ui/ui/jquery.ui.mouse.js',
                         'bower_components/jquery-ui/ui/jquery.ui.draggable.js',
-                        'bower_components/gmap3/dist/gmap3.min.js',
-                        'bower_components/flexslider/jquery.flexslider-min.js'
+                        'bower_components/bxslider-4/jquery.bxslider.min.js'
                     ]
                 }
             }
@@ -56,6 +55,31 @@ module.exports = function(grunt) {
                     nospawn: true
                 }
             }
+        },
+
+        browserSync: {
+            html: {
+                bsFiles: {
+                    src : ['styles/*.css']
+                },
+                options: {
+                    watchTask: true,
+                    debugInfo: true,
+                    server: {
+                        baseDir: "."
+                    }
+                }
+            },
+            plone: {
+                bsFiles: {
+                    src : ['styles/*.css']
+                },
+                options: {
+                    watchTask: true,
+                    debugInfo: true,
+                    proxy: "localhost:8080"
+                }
+            }
         }
     });
 
@@ -64,8 +88,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-include-replace');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-browser-sync');
 
     // Default task(s).
     grunt.registerTask('default', ['less']);
+    grunt.registerTask('bsync', ["browserSync:html", "watch"]);
 
 };
