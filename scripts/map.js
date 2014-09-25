@@ -62,7 +62,6 @@
                 maxSlides: 3,
                 slideMargin: 10,
                 moveSlides: 1,
-                startSlide: self.slides.length - 1,
                 onSliderLoad: function (idx) {
                     // set active class to slide and activate marker
                     var current = $(self.slides[idx]);
