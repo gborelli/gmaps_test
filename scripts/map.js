@@ -153,12 +153,26 @@
         }
     };
 
+    $.fn.extend({
+        carouselmapwidget: function (options) {
+            return this.each(function () {
 
+                var settings = $.extend(true, {}, options),
+                    $this = $(this),
+                    data = $this.data('carouselmapwidget'),
+                    mapwidget;
+
+                // If the plugin hasn't been initialized yet
+                if (!data) {
+                    mapwidget = new App.MapWidget(this, settings);
+                    $(this).data('carouselmapwidget', mapwidget);
+                }
+            });
+        }
+    });
 
     $(document).ready(function () {
-        var map = $('#map'),
-            app = new App.MapWidget(map);
-        map.data('mapwidget', app);
+        $('#map').carouselmapwidget();
     });
 
 }(jQuery));
