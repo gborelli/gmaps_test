@@ -19,6 +19,7 @@
         self.markers_wrapper = $('#markers');
         self.markers_identifier = '.slide';
         self.active_marker = null;
+        self.active_class = 'active';
         self.default_icon = "../img/marker.png";
         self.active_icon = '../img/active_marker.png';
 
@@ -62,6 +63,7 @@
                 maxSlides: 3,
                 slideMargin: 10,
                 moveSlides: 1,
+                startSlide: self.get_active_slide_idx(),
                 onSliderLoad: function (idx) {
                     // set active class to slide and activate marker
                     var current = $(self.slides[idx]);
@@ -86,9 +88,14 @@
 
             self.reset_active_marker();
             self.set_active_marker(marker);
+            self.set_active_class(slide_active);
+        },
 
-            $(self.markers_identifier, self.markers_wrapper).removeClass('active');
-            slide_active.addClass('active');
+        set_active_class: function (slide) {
+            var self = this;
+
+            $(self.markers_identifier, self.markers_wrapper).removeClass(self.active_class);
+            slide.addClass(self.active_class);
         },
 
         setup_markers: function () {
@@ -123,6 +130,21 @@
             // google.maps.event.addListener(gmarker, 'click', function () {
             //     self.change_slide(slide_id);
             // });
+        },
+
+        get_active_slide_idx: function () {
+            var self = this,
+                active = $('.' + self.active_class, self.slides.parent()),
+                idx = self.slides.length - 1,
+                active_idx = null;
+            if (active.length > 0) {
+                active_idx = $(active).data('slideIdx') - 1;
+                if (active_idx >= 0) {
+                    idx = active_idx;
+                }
+            }
+
+            return idx;
         },
 
         change_slide: function (idx) {
@@ -171,6 +193,9 @@
     });
 
     $(document).ready(function () {
+        var random_start = Math.round(Math.random() * (7));
+        $($('.slide')[random_start]).addClass('active');
+
         $('#map').carouselmapwidget();
     });
 
