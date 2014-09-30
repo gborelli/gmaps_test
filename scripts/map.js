@@ -19,8 +19,8 @@
         self.markers_wrapper = $('#markers');
         self.markers_identifier = '.slide';
         self.active_marker = null;
-        self.default_icon = "../images/green_marker.png";
-        self.active_icon = '../images/orange_marker.png';
+        self.default_icon = "../img/marker.png";
+        self.active_icon = '../img/active_marker.png';
 
         self.center = [44.494887, 11.3426163];
         self.zoom = 5;
@@ -58,7 +58,7 @@
             self.slider = self.markers_wrapper.bxSlider({
                 slideSelector: self.slides,
                 slideWidth: 450,
-                minSlides: 1,
+                minSlides: 2,
                 maxSlides: 3,
                 slideMargin: 10,
                 moveSlides: 1,
@@ -176,4 +176,3 @@
     });
 
 }(jQuery));
-

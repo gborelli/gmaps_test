@@ -35,11 +35,11 @@ module.exports = function(grunt) {
                 files: {
                     'scripts/requirements.js': [
                         'bower_components/jquery/jquery.js',
-                        'bower_components/jquery-ui/ui/jquery.ui.core.js',
-                        'bower_components/jquery-ui/ui/jquery.ui.widget.js',
-                        'bower_components/jquery-ui/ui/jquery.ui.mouse.js',
-                        'bower_components/jquery-ui/ui/jquery.ui.draggable.js',
                         'bower_components/bxslider-4/jquery.bxslider.min.js'
+                        // 'bower_components/jquery-ui/ui/jquery.ui.core.js',
+                        // 'bower_components/jquery-ui/ui/jquery.ui.widget.js',
+                        // 'bower_components/jquery-ui/ui/jquery.ui.mouse.js',
+                        // 'bower_components/jquery-ui/ui/jquery.ui.draggable.js'
                     ]
                 }
             }
