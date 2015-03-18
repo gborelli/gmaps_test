@@ -18,3 +18,5 @@ Usage
 
 Go to > http://<bsynchost>/templates/index.html
 
+
+test
