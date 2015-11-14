@@ -15,4 +15,4 @@ Usage
 
     $ grunt sync
 
-Go to > http://<bsynchost>/templates/index.html
+    Go to > http://<bsynchost>/templates/index.html
