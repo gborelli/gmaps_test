@@ -1,91 +1,92 @@
-<div id="map"></div>
+<div class="mapwidget">
+    <div class="map"></div>
 
-<div id="markers_wrapper" class="flexlider carousel">
-  <div id="markers" class="slides">
+    <div class="markers_wrapper flexlider carousel">
+        <div class="markers slides">
+            @@include(
+                'marker.html',
+                {
+                    "slide_num": 0,
+                    "title": "Torino #0",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
+                    "thumb": "https://placeimg.com/480/240/arch?a=1",
+                    "latitude": 45.07049,
+                    "longitude": 7.68682
+                }
+            )
+            @@include(
+                'marker.html',
+                {
+                    "slide_num": 1,
+                    "title": "Roma #1",
+                    "description": "Pretium in tellus. Morbi id dui eu felis vulputate interdum eget ac quam.",
+                    "thumb": "https://placeimg.com/480/240/arch?a=2",
+                    "latitude": 41.8723889,
+                    "longitude": 12.4801802
+                }
+            )
 
-    @@include(
-        'marker.html',
-        {
-            "slide_num": 0,
-            "title": "Torino #0",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
-            "thumb": "http://lorempixel.com/480/240/abstract/",
-            "latitude": 45.07049,
-            "longitude": 7.68682
-        }
-    )
-    @@include(
-        'marker.html',
-        {
-            "slide_num": 1,
-            "title": "Roma #1",
-            "description": "Pretium in tellus. Morbi id dui eu felis vulputate interdum eget ac quam.",
-            "thumb": "http://lorempixel.com/480/240/food/",
-            "latitude": 41.8723889,
-            "longitude": 12.4801802
-        }
-    )
+            @@include(
+                'marker.html',
+                {
+                    "slide_num": 2,
+                    "title": "Firenze #2",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+                    "thumb": "https://placeimg.com/480/240/arch?a=3",
+                    "latitude": 43.7710332,
+                    "longitude": 11.2480006
+                }
+            )
 
-    @@include(
-        'marker.html',
-        {
-            "slide_num": 2,
-            "title": "Firenze #2",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-            "thumb": "http://lorempixel.com/480/240/animals/?a=1",
-            "latitude": 43.7710332,
-            "longitude": 11.2480006
-        }
-    )
+            @@include(
+                'marker.html',
+                {
+                    "slide_num": 3,
+                    "title": "Bologna #3",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
+                    "thumb": "https://placeimg.com/480/240/arch?a=4",
+                    "latitude": 44.494887,
+                    "longitude":11.3426163
+                }
+            )
 
-    @@include(
-        'marker.html',
-        {
-            "slide_num": 3,
-            "title": "Bologna #3",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
-            "thumb": "http://lorempixel.com/480/240/sports/",
-            "latitude": 44.494887,
-            "longitude":11.3426163
-        }
-    )
-
-    @@include(
-        'marker.html',
-        {
-            "slide_num": 4,
-            "title": "Milano #4",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
-            "thumb": "http://lorempixel.com/480/240/city/?a=1",
-            "latitude": 45.4654219,
-            "longitude":9.1859243
-        }
-    )
+            @@include(
+                'marker.html',
+                {
+                    "slide_num": 4,
+                    "title": "Milano #4",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
+                    "thumb": "https://placeimg.com/480/240/arch?a=5",
+                    "latitude": 45.4654219,
+                    "longitude":9.1859243
+                }
+            )
 
 
-    @@include(
-        'marker.html',
-        {
-            "slide_num": 5,
-            "title": "Venezia #5",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
-            "thumb": "http://lorempixel.com/480/240/abstract/?a=1",
-            "latitude": 45.4408474,
-            "longitude": 12.3155151
-        }
-    )
+            @@include(
+                'marker.html',
+                {
+                    "slide_num": 5,
+                    "title": "Venezia #5",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
+                    "thumb": "https://placeimg.com/480/240/arch?a=6",
+                    "latitude": 45.4408474,
+                    "longitude": 12.3155151
+                }
+            )
 
-    @@include(
-        'marker.html',
-        {
-            "slide_num": 6,
-            "title": "Napoli #6",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
-            "thumb": "http://lorempixel.com/480/240/animals/",
-            "latitude": 40.8517746,
-            "longitude": 14.2681244
-        }
-    )
+            @@include(
+                'marker.html',
+                {
+                    "slide_num": 6,
+                    "title": "Napoli #6",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.",
+                    "thumb": "https://placeimg.com/480/240/arch?a=7",
+                    "latitude": 40.8517746,
+                    "longitude": 14.2681244
+                }
+            )
 
-  </div>
+        </div>
+    </div>
 </div>

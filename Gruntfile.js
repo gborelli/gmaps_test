@@ -7,8 +7,8 @@ module.exports = function(grunt) {
 
         includereplace: {
             templates: {
-                src: '*.html',
-                dest: 'templates/'
+                src: 'index.tmpl',
+                dest: 'index.html'
             }
         },
 
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'styles/',
-                    src: ['**/*.less'],
+                    src: ['**/[^_]*.less'],
                     dest: 'styles/',
                     ext: '.css'
                 }]
@@ -58,29 +58,39 @@ module.exports = function(grunt) {
         },
 
         browserSync: {
-            html: {
-                bsFiles: {
-                    src : ['styles/*.css']
-                },
-                options: {
-                    watchTask: true,
-                    debugInfo: true,
-                    server: {
-                        baseDir: "."
-                    }
-                }
+            bsFiles: {
+                src : ['styles/*.css']
             },
-            plone: {
-                bsFiles: {
-                    src : ['styles/*.css']
-                },
-                options: {
-                    watchTask: true,
-                    debugInfo: true,
-                    proxy: "localhost:8080"
+            options: {
+                server: {
+                    baseDir: "./"
                 }
             }
         }
+        // browserSync: {
+        //     html: {
+        //         bsFiles: {
+        //             src : ['styles/*.css']
+        //         },
+        //         options: {
+        //             watchTask: true,
+        //             debugInfo: true,
+        //             server: {
+        //                 baseDir: "."
+        //             }
+        //         }
+        //     },
+        //     plone: {
+        //         bsFiles: {
+        //             src : ['styles/*.css']
+        //         },
+        //         options: {
+        //             watchTask: true,
+        //             debugInfo: true,
+        //             proxy: "localhost:8080"
+        //         }
+        //     }
+        // }
     });
 
     // Load the plugins
@@ -91,7 +101,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
 
     // Default task(s).
-    grunt.registerTask('default', ['less']);
-    grunt.registerTask('bsync', ["browserSync:html", "watch"]);
+    grunt.registerTask('default', ['concat', 'less', 'includereplace']);
+    grunt.registerTask('bsync', ["browserSync", "watch"]);
 
 };

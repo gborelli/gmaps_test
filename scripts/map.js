@@ -12,16 +12,16 @@
         var self = this;
 
 
-        self.map = $(trigger);
-        self.gmap = $(trigger);
+        self.map = $('.map', trigger);
+        self.gmap = self.map;
 
         self.markers = {};
-        self.markers_wrapper = $('#markers');
+        self.markers_wrapper = $('.markers', trigger);
         self.markers_identifier = '.slide';
         self.active_marker = null;
         self.active_class = 'active';
-        self.default_icon = "../img/marker.png";
-        self.active_icon = '../img/active_marker.png';
+        self.default_icon = "./img/marker.png";
+        self.active_icon = './img/active_marker.png';
 
         self.center = [44.494887, 11.3426163];
         self.zoom = 5;
@@ -127,9 +127,9 @@
             };
 
             self.markers[slide_id] = gmarker;
-            // google.maps.event.addListener(gmarker, 'click', function () {
-            //     self.change_slide(slide_id);
-            // });
+            google.maps.event.addListener(gmarker, 'click', function () {
+                self.change_slide(slide_id);
+            });
         },
 
         get_active_slide_idx: function () {
@@ -196,7 +196,7 @@
         var random_start = Math.round(Math.random() * (7));
         $($('.slide')[random_start]).addClass('active');
 
-        $('#map').carouselmapwidget();
+        $('.mapwidget').carouselmapwidget();
     });
 
 }(jQuery));

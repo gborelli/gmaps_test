@@ -5,7 +5,7 @@ Installation
 
     $ npm install
     $ bower install
-    $ grunt concat
+    $ grunt watch
 
 
 Usage
@@ -13,6 +13,6 @@ Usage
 
 ::
 
-    $ grunt sync
+    $ grunt bsync
 
     Go to > http://<bsynchost>/templates/index.html
