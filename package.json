@@ -14,7 +14,8 @@
     ],
     "scripts": {
         "start": "grunt",
-        "deploy": "grunt"
+        "bower": "bower install",
+        "deploy": "npm run bower && grunt"
     },
     "description": "Test Map",
     "main": "Gruntfile.js",
