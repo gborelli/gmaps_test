@@ -13,7 +13,8 @@
         }
     ],
     "scripts": {
-        "start": "grunt"
+        "start": "grunt",
+        "deploy": "grunt"
     },
     "description": "Test Map",
     "main": "Gruntfile.js",
