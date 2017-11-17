@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         includereplace: {
             templates: {
                 src: 'index.tmpl',
-                dest: 'index.html'
+                dest: 'dist/index.html'
             }
         },
 
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'styles/',
                     src: ['**/[^_]*.less'],
-                    dest: 'styles/',
+                    dest: 'dist/styles/',
                     ext: '.css'
                 }]
             }
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
         concat: {
             all: {
                 files: {
-                    'scripts/app.js': [
+                    'dist/scripts/app.js': [
                         'bower_components/jquery/jquery.js',
                         'bower_components/bxslider-4/jquery.bxslider.min.js',
                         'scripts/map.js'
