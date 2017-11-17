@@ -15,7 +15,10 @@
     "scripts": {
         "start": "grunt",
         "bower": "bower install",
-        "deploy": "npm run bower && grunt"
+        "copy:img": "copyfiles img/* dist",
+        "copy:css": "copyfiles -f ./bower_components/bxslider-4/jquery.bxslider.css dist/styles",
+        "copy": "npm run copy:img && npm run copy:css",
+        "deploy": "npm run bower && grunt && npm run copy"
     },
     "description": "Test Map",
     "main": "Gruntfile.js",
@@ -29,6 +32,7 @@
         "grunt-include-replace": "~2.0.0"
     },
     "dependencies": {
+        "copyfiles": "^1.2.0",
         "grunt-cli": "^1.2.0"
     }
 }
