@@ -16,7 +16,7 @@
         "start": "grunt",
         "bower": "bower install",
         "copy:img": "copyfiles img/* dist",
-        "copy:bxslider": "copyfiles -u 1 ./bower_components/bxslider-4/**/* dist",
+        "copy:bxslider": "copyfiles -u 1 ./bower_components/bxslider-4/**/* ./bower_components/bxslider-4/*.css dist",
         "copy": "npm run copy:img && npm run copy:bxslider",
         "deploy": "npm run bower && grunt && npm run copy"
     },
