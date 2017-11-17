@@ -16,8 +16,8 @@
         "start": "grunt",
         "bower": "bower install",
         "copy:img": "copyfiles img/* dist",
-        "copy:css": "copyfiles -f ./bower_components/bxslider-4/jquery.bxslider.css dist/styles",
-        "copy": "npm run copy:img && npm run copy:css",
+        "copy:bxslider": "copyfiles -u 1 ./bower_components/bxslider-4/**/* dist",
+        "copy": "npm run copy:img && npm run copy:bxslider",
         "deploy": "npm run bower && grunt && npm run copy"
     },
     "description": "Test Map",
